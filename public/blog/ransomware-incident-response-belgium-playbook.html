@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook — CyberXDefend</title>
+    <meta
+      name="description"
+      content="A practical 7-step ransomware incident response playbook for Belgian organizations: containment, forensic preservation, CCB notification, and recovery."
+    />
+    <meta
+      name="keywords"
+      content="ransomware Belgium, double extortion playbook, ransomware incident response, DFIR Belgium, CCB notification, ransomware forensics, NIS2 incident reporting, healthcare ransomware Belgium"
+    />
+    <link rel="canonical" href="https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html" />
+    <link rel="alternate" hreflang="en" href="https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html" />
+    <link rel="alternate" hreflang="x-default" href="https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html" />
+    <link rel="alternate" type="application/atom+xml" title="CyberXDefend Insights" href="/blog/feed.xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook" />
+    <meta property="og:description" content="Triage double-extortion ransomware while preserving defensible evidence for legal counsel and the CCB." />
+    <meta property="og:image" content="https://cyberxdefend.com/og-image.png" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="stylesheet" href="/blog/_styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook",
+        "datePublished": "2026-04-17",
+        "dateModified": "2026-04-17",
+        "author": { "@type": "Organization", "name": "CyberXDefend" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CyberXDefend",
+          "logo": { "@type": "ImageObject", "url": "https://cyberxdefend.com/favicon.svg" }
+        },
+        "image": "https://cyberxdefend.com/og-image.png",
+        "mainEntityOfPage": "https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html",
+        "about": ["Ransomware", "Incident Response", "Digital Forensics", "Belgium"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyberxdefend.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://cyberxdefend.com/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook" }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How quickly should evidence preservation begin during a ransomware incident?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Evidence capture should begin immediately on containment. Volatile data (RAM, network connections) is collected first, then disk images are written to write-once or air-gapped storage with SHA-256 hashing and a chain-of-custody log." }
+          },
+          {
+            "@type": "Question",
+            "name": "Should a Belgian organization pay a ransomware demand?",
+            "acceptedAnswer": { "@type": "Answer", "text": "That decision is legal, financial, and reputational and should never be made by IT alone. Involve legal counsel, the cyber insurer, and consult CCB guidance. Payments may carry sanctions implications depending on the threat actor." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is double-extortion ransomware?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A tactic where attackers both encrypt a victim's data and threaten to publish exfiltrated copies, pressuring payment through operational disruption and reputational risk." }
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook",
+        "description": "A practical 7-step ransomware incident-response playbook for Belgian organizations, covering declaration, containment, forensic preservation, CCB notification, and recovery.",
+        "totalTime": "PT72H",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Activate, do not improvise", "text": "Within 30 minutes of confirmation, declare the incident, activate the IR plan, notify the executive sponsor, legal counsel, and the cyber insurer, and open a timestamped incident log." },
+          { "@type": "HowToStep", "position": 2, "name": "Contain without contaminating evidence", "text": "Isolate affected hosts at the network layer (disable switch port, revoke VPN cert) rather than powering them off. Preserve volatile data before any clean-up." },
+          { "@type": "HowToStep", "position": 3, "name": "Preserve evidence with chain of custody", "text": "Image affected systems to write-once or air-gapped storage, record SHA-256 hashes, and maintain a chain-of-custody log identifying who handled which evidence, when, and why." },
+          { "@type": "HowToStep", "position": 4, "name": "Identify scope and dwell time", "text": "Reconstruct attacker behavior: initial access vector, persistence, lateral movement, privilege escalation, and exfiltration. Determine dwell time from the evidence." },
+          { "@type": "HowToStep", "position": 5, "name": "Notify the CCB and affected parties", "text": "Submit an early warning to the Centre for Cybersecurity Belgium within 24 hours of awareness, an incident notification within 72 hours, and a final report within one month. Coordinate with GDPR DPA notification where personal data is involved." },
+          { "@type": "HowToStep", "position": 6, "name": "Negotiate or refuse, but do not decide alone", "text": "The decision to engage with a double-extortion actor is legal, financial, and reputational. Involve legal counsel, the insurer, and where applicable law enforcement. Consult CCB guidance on ransom payments." },
+          { "@type": "HowToStep", "position": 7, "name": "Recover, then learn", "text": "Recover from clean, verified backups, rotate all credentials and tokens that may have been exposed, and conduct a structured post-incident review within 30 days that feeds findings back into the risk register, IR plan, and technical controls." }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site">
+      <div class="bar">
+        <a href="/" class="brand">
+          <span class="mark">XF</span>
+          <strong>CyberXDefend</strong>
+        </a>
+        <nav>
+          <a href="/#services">Capabilities</a>
+          <a href="/#industries">Industries</a>
+          <a href="/blog/">Insights</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">Ransomware · Incident Response</p>
+      <h1>Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook</h1>
+      <p class="meta">Updated April 2026 · ~7 min read · For incident response leads, internal counsel, and CISOs in Belgian mid-market organizations</p>
+
+      <p>
+        Belgium handled <strong>105 ransomware incidents</strong> nationally in 2025, and the AZ Monica disruption in January 2026 made clear that healthcare and adjacent sectors remain primary targets. The hardest part of a real ransomware event isn't the encryption — it's making decisions under pressure that hold up later in front of regulators, insurers, and clients.
+      </p>
+
+      <blockquote>
+        Every action in the first 4 hours either preserves evidence or destroys it. Plan accordingly.
+      </blockquote>
+
+      <h2>Step 1 — Activate, don't improvise</h2>
+      <p>
+        Within 30 minutes of confirmation, declare the incident and activate the IR plan. Notify executive sponsor, legal counsel, and the cyber insurer. Open a single, timestamped incident log — every decision goes here.
+      </p>
+
+      <h2>Step 2 — Contain without contaminating evidence</h2>
+      <p>
+        Isolate affected hosts at the network layer (disable switch port, revoke VPN cert) rather than powering them off — memory-resident artefacts and encryption keys can be lost on shutdown. Preserve volatile data first (RAM, network connections, running processes) before any clean-up.
+      </p>
+
+      <h2>Step 3 — Preserve evidence with chain of custody</h2>
+      <p>
+        Image affected systems to write-once or air-gapped storage. Record hashes (SHA-256) for every artefact. Maintain a chain-of-custody log identifying who handled which evidence, when, and why. This is the difference between a defensible investigation and an inadmissible one.
+      </p>
+
+      <h2>Step 4 — Identify scope and dwell time</h2>
+      <p>
+        Reconstruct attacker behavior: initial access vector, persistence mechanisms, lateral movement, privilege escalation, exfiltration paths. Determine dwell time — most Belgian mid-market intrusions show 9–28 days of attacker presence before encryption.
+      </p>
+
+      <h2>Step 5 — Notify the CCB and affected parties</h2>
+      <p>
+        Under NIS2, significant incidents require an early warning to the Centre for Cybersecurity Belgium within <strong>24 hours</strong> of awareness, an incident notification within <strong>72 hours</strong>, and a final report within <strong>one month</strong>. If personal data is involved, the GDPR 72-hour notification to the DPA also applies. Coordinate the two timelines from a single facts log to avoid contradictions.
+      </p>
+
+      <h2>Step 6 — Negotiate or refuse — but don't decide alone</h2>
+      <p>
+        The decision to engage with a double-extortion threat actor is legal, financial, and reputational. It should never be made by IT alone. Loop in legal counsel, the insurer, and (where applicable) law enforcement. Belgian organizations should also consult the CCB's guidance on ransom payments — paying may have sanctions implications depending on the actor.
+      </p>
+
+      <h2>Step 7 — Recover, then learn</h2>
+      <p>
+        Recover from clean, verified backups. Rotate all credentials, certificates, and tokens that may have been exposed. After service restoration, conduct a structured post-incident review within 30 days and feed the findings back into the risk register, IR plan, and technical controls.
+      </p>
+
+      <h2>How CyberXDefend supports each step</h2>
+      <ul>
+        <li><strong>Steps 2–3:</strong> air-gapped evidence collection with built-in chain of custody and SHA-256 hashing.</li>
+        <li><strong>Step 4:</strong> attacker-behavior reconstruction across endpoint, identity, and cloud telemetry.</li>
+        <li><strong>Step 5:</strong> CCB- and GDPR-aligned notification templates pre-populated from the incident log.</li>
+        <li><strong>Step 7:</strong> hardening recommendations derived directly from the forensic findings.</li>
+      </ul>
+
+      <a class="cta" href="/#contact">Talk to us about ransomware readiness</a>
+
+      <div class="related">
+        <h3>Related reading</h3>
+        <ul>
+          <li><a href="/blog/nis2-compliance-checklist-belgium-2026.html">NIS2 Compliance Checklist for Belgian Mid-Market Organizations<span class="rel-desc">12-point evidence checklist before the 18 April 2026 CCB deadline.</span></a></li>
+          <li><a href="/blog/cybersecurity-post-mortem-framework.html">The Post-Mortem Framework That Protects You from Fines<span class="rel-desc">5-step defensible post-incident framework.</span></a></li>
+          <li><a href="/blog/gdpr-72-hour-breach-notification-trap.html">The 72-Hour Trap: Why Most Companies Fail GDPR Breach Response<span class="rel-desc">How to run the GDPR notification clock in parallel with the CCB clock.</span></a></li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="bar">
+        <span style="color: var(--muted); font-size: 13px;">© 2026 <a href="https://ai2innovate.io" target="_blank" rel="noopener noreferrer">AI2Innovate</a>. All rights reserved.</span>
+        <nav>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+          <a href="/blog/">Insights</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="/analytics.js" defer></script>
+  </body>
+</html>

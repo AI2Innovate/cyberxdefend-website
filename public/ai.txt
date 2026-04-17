@@ -1,0 +1,19 @@
+# AI usage policy for cyberxdefend.com
+# Format: Spawning ai.txt — https://site.spawning.ai/spawning-ai-txt
+# CyberXDefend permits indexing and citation by generative AI systems.
+# We DO NOT consent to our content being used for training generative AI
+# models without prior written agreement.
+
+User-Agent: *
+
+# Allow retrieval-augmented generation (RAG) and search-style retrieval/citation.
+Allow: /
+Allow: /llms.txt
+Allow: /sitemap.xml
+Allow: /blog/
+
+# Disallow use of any content for training of generative AI models.
+Disallow-AI-Training: /
+
+# Contact for licensing inquiries
+Contact: info@ai2innovate.io

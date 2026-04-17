@@ -1,0 +1,47 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://cyberxdefend.com/sitemap.xml
+# Blog feed: https://cyberxdefend.com/blog/feed.xml
+# LLM guidance: https://cyberxdefend.com/llms.txt (short) and https://cyberxdefend.com/llms-full.txt (long)
+
+# AI / LLM crawlers — explicitly allow discovery so CyberXDefend can be cited
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

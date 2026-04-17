@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CyberXDefend Insights</title>
+  <subtitle>Cyber forensics, ransomware response, and NIS2 readiness for Belgian and EU regulated organizations.</subtitle>
+  <link href="https://cyberxdefend.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://cyberxdefend.com/blog/" rel="alternate" type="text/html"/>
+  <id>https://cyberxdefend.com/blog/</id>
+  <updated>2026-04-17T09:00:00Z</updated>
+  <author>
+    <name>CyberXDefend</name>
+    <email>info@ai2innovate.io</email>
+    <uri>https://cyberxdefend.com</uri>
+  </author>
+  <rights>© 2026 AI2Innovate. All rights reserved.</rights>
+
+  <entry>
+    <title>The €475,000 Lesson: What Booking.com Got Wrong After Its Breach</title>
+    <link href="https://cyberxdefend.com/blog/booking-com-gdpr-breach-notification-lessons.html"/>
+    <id>https://cyberxdefend.com/blog/booking-com-gdpr-breach-notification-lessons.html</id>
+    <updated>2026-04-17T09:00:00Z</updated>
+    <published>2026-04-17T09:00:00Z</published>
+    <summary>You are not fined for being hacked — you are fined for being unprepared, slow, and unclear. What the Booking.com GDPR case actually teaches.</summary>
+    <category term="GDPR"/>
+    <category term="Breach Response"/>
+  </entry>
+
+  <entry>
+    <title>When Fitness Meets Failure: Lessons from the Basic-Fit Cyber Incident</title>
+    <link href="https://cyberxdefend.com/blog/basic-fit-cyber-incident-lessons.html"/>
+    <id>https://cyberxdefend.com/blog/basic-fit-cyber-incident-lessons.html</id>
+    <updated>2026-04-17T09:00:00Z</updated>
+    <published>2026-04-17T09:00:00Z</published>
+    <summary>Consumer businesses face high exposure and high reputational risk. Where most struggle is not prevention — it is post-breach chaos.</summary>
+    <category term="Case Study"/>
+    <category term="Crisis Communication"/>
+  </entry>
+
+  <entry>
+    <title>The 72-Hour Trap: Why Most Companies Fail GDPR Breach Response</title>
+    <link href="https://cyberxdefend.com/blog/gdpr-72-hour-breach-notification-trap.html"/>
+    <id>https://cyberxdefend.com/blog/gdpr-72-hour-breach-notification-trap.html</id>
+    <updated>2026-04-17T09:00:00Z</updated>
+    <published>2026-04-17T09:00:00Z</published>
+    <summary>The 72-hour rule is not about time. It is about preparedness. How to separate investigation from decision-making when it matters.</summary>
+    <category term="GDPR"/>
+    <category term="Incident Response"/>
+  </entry>
+
+  <entry>
+    <title>Cybersecurity Post-Mortem: The Only Framework That Actually Protects You from Fines</title>
+    <link href="https://cyberxdefend.com/blog/cybersecurity-post-mortem-framework.html"/>
+    <id>https://cyberxdefend.com/blog/cybersecurity-post-mortem-framework.html</id>
+    <updated>2026-04-17T09:00:00Z</updated>
+    <published>2026-04-17T09:00:00Z</published>
+    <summary>A real post-mortem is not a technical report. It is a defensible system — timeline, decisions, gaps, regulatory exposure, actionable fixes.</summary>
+    <category term="Post-Mortem"/>
+    <category term="Governance"/>
+  </entry>
+
+  <entry>
+    <title>NIS2 Compliance Checklist for Belgian Mid-Market Organizations (2026)</title>
+    <link href="https://cyberxdefend.com/blog/nis2-compliance-checklist-belgium-2026.html"/>
+    <id>https://cyberxdefend.com/blog/nis2-compliance-checklist-belgium-2026.html</id>
+    <updated>2026-04-17T09:00:00Z</updated>
+    <published>2026-04-17T09:00:00Z</published>
+    <summary>The 12 controls Belgian organizations registered under NIS2 should evidence before the 18 April 2026 CCB deadline.</summary>
+    <category term="NIS2"/>
+    <category term="Compliance"/>
+  </entry>
+
+  <entry>
+    <title>Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook</title>
+    <link href="https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html"/>
+    <id>https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html</id>
+    <updated>2026-04-17T09:00:00Z</updated>
+    <published>2026-04-17T09:00:00Z</published>
+    <summary>How to triage a double-extortion ransomware incident while preserving defensible evidence for legal counsel and regulators.</summary>
+    <category term="Ransomware"/>
+    <category term="Incident Response"/>
+  </entry>
+</feed>

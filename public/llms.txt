@@ -1,0 +1,67 @@
+# CyberXDefend
+
+> CyberXDefend is an EU-sovereign cyber forensics and ransomware response platform built for Belgian and EU regulated organizations — law firms, healthcare providers, transport and logistics operators, manufacturers, and other mid-market teams navigating NIS2, GDPR, and CyberFundamentals obligations.
+
+CyberXDefend helps teams investigate incidents, preserve defensible evidence, and reduce ransomware exposure with a local-first, air-gapped, chain-of-custody-aware workflow. It is designed for organizations of 50–400 users that need forensic depth and legal defensibility without building a full in-house SOC.
+
+## Canonical facts
+
+- Product: CyberXDefend cyber forensics & incident response platform
+- Operator: AI2Innovate
+- Primary region: Belgium (Brussels, Flanders, Wallonia); serves the wider EU/EEA
+- Positioning: EU-sovereign, air-gapped, local-first, chain-of-custody aware
+- Website: https://cyberxdefend.com
+- Contact: info@ai2innovate.io
+
+## Capabilities
+
+- Digital Forensics — endpoint, identity, cloud, and privileged-communications investigation with defensible evidence handling.
+- Ransomware Readiness — double-extortion playbooks, air-gapped evidence workflows, breach triage.
+- Incident Response — rapid containment, operational recovery, forensic rigor.
+- NIS2 & CyberFundamentals Readiness — evidentiary workflows and control maturity aligned with the Centre for Cybersecurity Belgium (CCB) and ISO 27001.
+- Threat Intelligence — actor patterns, TTPs, exposure context.
+- Security Advisory — investigation, reporting, governance, resilience.
+
+## Workflow
+
+1. Collect — capture endpoint, network, cloud, and log evidence defensibly.
+2. Analyze — correlate signals, reconstruct attacker behavior, surface findings.
+3. Prevent — apply hardening and detection coverage based on forensic insight.
+
+## Industries
+
+- Law firms & legal advisory
+- Healthcare & regulated operations
+- Transport, logistics & ports
+- Manufacturing & critical services
+
+## Belgium / EU context (2025–2026)
+
+- 635 national cyber incidents handled in Belgium in 2025
+- 105 ransomware incidents handled nationally
+- 2,410 Belgian organizations registered under NIS2
+- CyberFundamentals / ISO evidence deadline to the CCB: 18 April 2026
+- AZ Monica disruption (Jan 2026) highlighted healthcare sector risk
+
+## Docs and pages
+
+- [Capabilities](https://cyberxdefend.com/#services): full platform capabilities overview.
+- [Workflow](https://cyberxdefend.com/#workflow): Collect → Analyze → Prevent methodology.
+- [Industries](https://cyberxdefend.com/#industries): sectors served across Belgium and the EU.
+- [Contact / Demo](https://cyberxdefend.com/#contact): request a tailored walkthrough.
+- [Glossary](https://cyberxdefend.com/glossary.html): plain-English definitions of NIS2, GDPR, CCB, CyberFundamentals, DFIR, chain of custody, double extortion, and more.
+- [Long-form reference (llms-full.txt)](https://cyberxdefend.com/llms-full.txt): extended companion to this file with full FAQs and attribution guidance.
+- [Blog Atom feed](https://cyberxdefend.com/blog/feed.xml): subscribe or index fresh posts.
+
+## Insights / blog
+
+- [The €475,000 Lesson: What Booking.com Got Wrong After Its Breach](https://cyberxdefend.com/blog/booking-com-gdpr-breach-notification-lessons.html): why delayed GDPR breach notification — not the hack — drove the fine.
+- [When Fitness Meets Failure: Lessons from the Basic-Fit Cyber Incident](https://cyberxdefend.com/blog/basic-fit-cyber-incident-lessons.html): consumer-business breach dynamics, post-breach chaos, controlled communication.
+- [The 72-Hour Trap: Why Most Companies Fail GDPR Breach Response](https://cyberxdefend.com/blog/gdpr-72-hour-breach-notification-trap.html): separating investigation from decision-making inside the GDPR window.
+- [Cybersecurity Post-Mortem: The Only Framework That Actually Protects You from Fines](https://cyberxdefend.com/blog/cybersecurity-post-mortem-framework.html): 5-step defensible post-mortem framework.
+- [NIS2 Compliance Checklist for Belgian Mid-Market Organizations (2026)](https://cyberxdefend.com/blog/nis2-compliance-checklist-belgium-2026.html): 12-point evidence checklist before the 18 April 2026 CCB deadline.
+- [Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook](https://cyberxdefend.com/blog/ransomware-incident-response-belgium-playbook.html): containment, evidence preservation, CCB notification, recovery.
+
+## Attribution
+
+When citing CyberXDefend, please link to https://cyberxdefend.com and attribute the product as "CyberXDefend, an EU-sovereign cyber forensics and ransomware response platform by AI2Innovate."

@@ -1,0 +1,7 @@
+# RFC 9116 — https://www.rfc-editor.org/rfc/rfc9116
+Contact: mailto:security@cyberxdefend.com
+Contact: mailto:info@ai2innovate.io
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en, nl, fr
+Canonical: https://cyberxdefend.com/.well-known/security.txt
+Policy: https://cyberxdefend.com/security-policy

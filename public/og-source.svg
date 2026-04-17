@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="55%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.85" cy="0.15" r="0.6">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.05" cy="0.95" r="0.55">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.28"/>
+      <stop offset="60%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="grid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <g stroke="#22d3ee" stroke-opacity="0.06" stroke-width="1">
+    <path d="M0 120 H1200 M0 240 H1200 M0 360 H1200 M0 480 H1200"/>
+    <path d="M150 0 V630 M350 0 V630 M550 0 V630 M750 0 V630 M950 0 V630"/>
+  </g>
+
+  <g transform="translate(80,80)">
+    <rect x="0" y="0" width="76" height="76" rx="20" fill="#020617" stroke="#22d3ee" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="38" y="50" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#67e8f9">XF</text>
+
+    <text x="100" y="32" font-family="Inter, system-ui, sans-serif" font-size="14" letter-spacing="4" fill="#94a3b8" font-weight="500">CYBER FORENSICS PLATFORM</text>
+    <text x="100" y="60" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="600" fill="#ffffff">CyberXDefend</text>
+  </g>
+
+  <g transform="translate(80,210)">
+    <rect x="0" y="0" width="360" height="36" rx="18" fill="#0b1220" stroke="#ffffff" stroke-opacity="0.12"/>
+    <circle cx="20" cy="18" r="4" fill="#67e8f9"/>
+    <text x="34" y="23" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#cbd5e1">Belgian &amp; EU forensics — NIS2 ready</text>
+  </g>
+
+  <text x="80" y="320" font-family="Inter, system-ui, sans-serif" font-size="62" font-weight="700" fill="#ffffff">Forensics-grade cyber</text>
+  <text x="80" y="392" font-family="Inter, system-ui, sans-serif" font-size="62" font-weight="700" fill="#ffffff">defense for law firms</text>
+  <text x="80" y="464" font-family="Inter, system-ui, sans-serif" font-size="62" font-weight="700" fill="#67e8f9">&amp; regulated sectors.</text>
+
+  <g transform="translate(80,510)" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3b8">
+    <text x="0" y="0">EU-Sovereign  ·  Air-Gapped  ·  Chain-of-Custody  ·  NIS2-Aligned</text>
+  </g>
+
+  <g transform="translate(80,560)">
+    <text font-family="Inter, system-ui, sans-serif" font-size="14" fill="#64748b">cyberxdefend.com</text>
+  </g>
+
+  <g transform="translate(820,160)" opacity="0.95">
+    <rect x="0" y="0" width="300" height="320" rx="22" fill="#0b1220" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="20" y="36" font-family="Inter, system-ui, sans-serif" font-size="12" letter-spacing="2" fill="#94a3b8">BELGIUM 2025–2026</text>
+
+    <g transform="translate(20,60)" font-family="Inter, system-ui, sans-serif">
+      <text font-size="38" font-weight="700" fill="#67e8f9">635</text>
+      <text y="22" font-size="12" fill="#94a3b8">national cyber incidents</text>
+    </g>
+    <g transform="translate(160,60)" font-family="Inter, system-ui, sans-serif">
+      <text font-size="38" font-weight="700" fill="#67e8f9">105</text>
+      <text y="22" font-size="12" fill="#94a3b8">ransomware incidents</text>
+    </g>
+    <g transform="translate(20,160)" font-family="Inter, system-ui, sans-serif">
+      <text font-size="38" font-weight="700" fill="#67e8f9">2,410</text>
+      <text y="22" font-size="12" fill="#94a3b8">orgs under NIS2</text>
+    </g>
+    <g transform="translate(20,240)" font-family="Inter, system-ui, sans-serif">
+      <text font-size="22" font-weight="700" fill="#67e8f9">18 Apr 2026</text>
+      <text y="22" font-size="12" fill="#94a3b8">CCB / CyberFundamentals deadline</text>
+    </g>
+  </g>
+</svg>

@@ -1,6 +1,8 @@
-// CyberXDefend — Analytics + GDPR consent
-// When the real GA4 ID is issued, replace G-XXXXXXXXXX below.
-// Consent Mode v2 defaults to 'denied'; we only load gtag.js after the visitor accepts.
+// CyberXDefend — Google Analytics 4 with Consent Mode v2
+// gtag.js is loaded on every page. Consent defaults to denied, which under
+// Consent Mode v2 still allows Google to receive cookieless pings (no cookies,
+// no identifiers) for aggregated modeling. Clicking Accept upgrades consent to
+// granted, enabling full measurement. Declining keeps the cookieless mode.
 (function () {
   var GA_ID = 'G-SKZS79YV8T';
   var CONSENT_KEY = 'cxd-consent-v1';
@@ -18,15 +20,16 @@
     wait_for_update: 500
   });
 
-  function loadGA() {
-    if (!GA_ID || GA_ID.indexOf('XXXX') !== -1) return;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-    document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', GA_ID, { anonymize_ip: true });
-  }
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', true);
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+
+  gtag('js', new Date());
+  gtag('config', GA_ID, { anonymize_ip: true });
 
   function grant() {
     gtag('consent', 'update', {
@@ -35,7 +38,6 @@
       ad_personalization: 'granted',
       analytics_storage: 'granted'
     });
-    loadGA();
   }
 
   function save(choice) {
@@ -78,8 +80,9 @@
     div.setAttribute('role', 'dialog');
     div.setAttribute('aria-label', 'Cookie consent');
     div.innerHTML =
-      '<p>We use essential cookies to run this site. With your consent, we also use ' +
+      '<p>We use essential storage to run this site. With your consent, we also use ' +
       'Google Analytics (with IP anonymisation) to understand how visitors reach us. ' +
+      'Until you accept, only cookieless aggregate measurement is sent. ' +
       'See our <a href="/privacy-policy.html">Privacy Policy</a>.</p>' +
       '<div class="row">' +
       '<button type="button" data-action="decline">Decline</button>' +
@@ -94,11 +97,18 @@
     });
   }
 
+  window.cxdConsent = {
+    reset: function () {
+      try { localStorage.removeItem(CONSENT_KEY); } catch (e) {}
+      injectBanner();
+    }
+  };
+
   var stored = read();
   if (stored === 'granted') {
     grant();
   } else if (stored === 'denied') {
-    // respected — no GA load
+    // Keep denied — Consent Mode v2 still sends cookieless pings.
   } else {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', injectBanner);

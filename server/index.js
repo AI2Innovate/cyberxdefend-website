@@ -1,20 +1,29 @@
 import 'dotenv/config';
 import express from 'express';
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 
 const {
-  SENDGRID_API_KEY,
+  SMTP_HOST = 'smtp.office365.com',
+  SMTP_PORT = 587,
+  SMTP_USER,
+  SMTP_PASS,
   MAIL_TO = 'info@ai2innovate.io',
-  MAIL_FROM = 'no-reply@cyberxdefend.com',
+  MAIL_FROM,
   PORT = 5174,
 } = process.env;
 
-if (!SENDGRID_API_KEY) {
-  console.error('SENDGRID_API_KEY is not set. Add it to .env before starting the server.');
+if (!SMTP_USER || !SMTP_PASS) {
+  console.error('SMTP_USER and SMTP_PASS must be set. Add them to .env before starting the server.');
   process.exit(1);
 }
 
-sgMail.setApiKey(SENDGRID_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: Number(SMTP_PORT),
+  secure: false,
+  requireTLS: true,
+  auth: { user: SMTP_USER, pass: SMTP_PASS },
+});
 
 const app = express();
 app.use(express.json({ limit: '20kb' }));
@@ -59,9 +68,9 @@ app.post('/api/demo', async (req, res) => {
   `;
 
   try {
-    await sgMail.send({
+    await transporter.sendMail({
+      from: `"CyberXDefend Website" <${MAIL_FROM || SMTP_USER}>`,
       to: MAIL_TO,
-      from: MAIL_FROM,
       replyTo: email,
       subject,
       text,
@@ -69,8 +78,7 @@ app.post('/api/demo', async (req, res) => {
     });
     res.json({ ok: true });
   } catch (err) {
-    const detail = err?.response?.body ?? err?.message ?? 'unknown error';
-    console.error('SendGrid error:', detail);
+    console.error('SMTP error:', err?.message ?? err);
     res.status(502).json({ error: 'Failed to send email. Please try again later.' });
   }
 });

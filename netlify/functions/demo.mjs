@@ -1,7 +1,7 @@
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 
 const MAIL_TO = process.env.MAIL_TO || 'info@ai2innovate.io';
-const MAIL_FROM = process.env.MAIL_FROM || 'no-reply@cyberxdefend.com';
+const MAIL_FROM = process.env.MAIL_FROM || process.env.SMTP_USER;
 
 const escape = (value = '') =>
   String(value)
@@ -25,11 +25,10 @@ export default async (req) => {
     return json({ error: 'Method not allowed' }, 405);
   }
 
-  if (!process.env.SENDGRID_API_KEY) {
-    console.error('SENDGRID_API_KEY is not set in Netlify environment.');
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.error('SMTP_USER or SMTP_PASS is not set in Netlify environment.');
     return json({ error: 'Server misconfigured.' }, 500);
   }
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
   let body;
   try {
@@ -68,10 +67,21 @@ export default async (req) => {
     </div>
   `;
 
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || 'smtp.office365.com',
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: false,
+    requireTLS: true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
   try {
-    await sgMail.send({
+    await transporter.sendMail({
+      from: `"CyberXDefend Website" <${MAIL_FROM}>`,
       to: MAIL_TO,
-      from: MAIL_FROM,
       replyTo: email,
       subject,
       text,
@@ -79,8 +89,7 @@ export default async (req) => {
     });
     return json({ ok: true });
   } catch (err) {
-    const detail = err?.response?.body ?? err?.message ?? 'unknown error';
-    console.error('SendGrid error:', detail);
+    console.error('SMTP error:', err?.message ?? err);
     return json({ error: 'Failed to send email. Please try again later.' }, 502);
   }
 };

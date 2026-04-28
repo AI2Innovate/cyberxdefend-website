@@ -8,6 +8,7 @@
     "dev:web": "vite",
     "dev:api": "node server/index.js",
     "og": "node scripts/generate-og.mjs",
+    "logos": "node scripts/generate-logos.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server/index.js"

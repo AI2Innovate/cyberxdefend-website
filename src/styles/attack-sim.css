@@ -1,0 +1,749 @@
+/* ============ TOKENS ============ */
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ff3b4e;
+}
+@property --accent-soft {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(255, 59, 78, 0.14);
+}
+
+:root {
+  --ink: #05080e;
+  --ink-2: #0a111b;
+  --paper: #e9f0f6;
+  --steel: #8da3b8;
+  --threat: #ff3b4e;
+  --warn: #ffb020;
+  --defend: #2be8c8;
+  --line: rgba(141, 163, 184, 0.16);
+  --accent: #ff3b4e;
+  --accent-soft: rgba(255, 59, 78, 0.14);
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --display: 'Unbounded', var(--sans);
+  transition: --accent 1.4s ease, --accent-soft 1.4s ease;
+}
+:root[data-theme='defend'] {
+  --accent: #2be8c8;
+  --accent-soft: rgba(43, 232, 200, 0.12);
+}
+
+.attack-sim {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.attack-sim ::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+/* ============ CANVAS BACKDROP ============ */
+.attack-sim__canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: block;
+}
+.attack-sim__vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 10%, transparent 40%, rgba(5, 8, 14, 0.78) 100%),
+    linear-gradient(to bottom, rgba(5, 8, 14, 0.55), rgba(5, 8, 14, 0.15) 30%, rgba(5, 8, 14, 0.15) 70%, rgba(5, 8, 14, 0.7));
+}
+.attack-sim__scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, #fff 3px 4px);
+  mix-blend-mode: overlay;
+}
+
+/* ============ HUD / NAV ============ */
+.attack-sim header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.85rem clamp(1rem, 4vw, 2.5rem);
+  background: linear-gradient(to bottom, rgba(5, 8, 14, 0.92), rgba(5, 8, 14, 0.55) 75%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.attack-sim .brand {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.attack-sim .brand b {
+  color: var(--accent);
+  transition: color 1.2s ease;
+}
+.attack-sim .ticker {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 2.2rem;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--steel);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.attack-sim .ticker span {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.attack-sim .ticker .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--threat);
+  animation: attack-pulse 1.6s infinite;
+}
+.attack-sim .ticker b {
+  color: var(--paper);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+@keyframes attack-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.attack-sim .nav-cta {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  background: var(--accent);
+  text-decoration: none;
+  padding: 0.55rem 1rem;
+  border-radius: 3px;
+  font-weight: 500;
+  transition:
+    background 1.2s ease,
+    transform 0.15s ease;
+  white-space: nowrap;
+}
+.attack-sim .nav-cta:hover {
+  transform: translateY(-1px);
+}
+
+/* ============ LAYOUT ============ */
+.attack-sim main {
+  position: relative;
+  z-index: 2;
+}
+.attack-sim section {
+  position: relative;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.2rem, 6vw, 4rem);
+}
+.attack-sim .wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.attack-sim .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 1.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+.attack-sim .eyebrow::before {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: var(--accent);
+  transition: background 1.2s ease;
+}
+.attack-sim h1,
+.attack-sim h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.attack-sim h1 {
+  font-size: clamp(2rem, 6.2vw, 4.2rem);
+  font-weight: 900;
+}
+.attack-sim h2 {
+  font-size: clamp(1.5rem, 3.8vw, 2.6rem);
+}
+.attack-sim .lede {
+  color: var(--steel);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  max-width: 46ch;
+  margin-top: 1.3rem;
+}
+.attack-sim .lede strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.attack-sim .rv {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.attack-sim .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============ HERO ============ */
+.attack-sim #hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 7rem;
+}
+.attack-sim #hero .tagline {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--steel);
+  margin-top: 2.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+}
+.attack-sim #hero .tagline em {
+  font-style: normal;
+  color: var(--paper);
+}
+.attack-sim .hero-ctas {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.6rem;
+  flex-wrap: wrap;
+}
+.attack-sim .btn {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 0.95rem 1.6rem;
+  border-radius: 3px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.attack-sim .btn-solid {
+  background: var(--accent);
+  color: var(--ink);
+}
+.attack-sim .btn-solid:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+.attack-sim .btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--paper);
+}
+.attack-sim .btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.attack-sim .scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  color: var(--steel);
+  text-transform: uppercase;
+  animation: attack-bob 2.4s ease-in-out infinite;
+}
+@keyframes attack-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 8px);
+  }
+}
+
+/* ============ TRUTH / STATS ============ */
+.attack-sim .stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 3rem;
+}
+.attack-sim .stat {
+  background: rgba(7, 11, 18, 0.82);
+  backdrop-filter: blur(6px);
+  padding: 2rem 1.6rem;
+  position: relative;
+  overflow: hidden;
+}
+.attack-sim .stat::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transition: background 1.2s ease;
+}
+.attack-sim .stat .num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.attack-sim .stat .num small {
+  font-size: 0.45em;
+  color: var(--steel);
+  font-weight: 500;
+}
+.attack-sim .stat .lbl {
+  color: var(--steel);
+  font-size: 0.86rem;
+  margin-top: 0.8rem;
+  line-height: 1.5;
+}
+.attack-sim .stat .src {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(141, 163, 184, 0.55);
+  margin-top: 0.9rem;
+  letter-spacing: 0.05em;
+}
+.attack-sim .sources-note {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: rgba(141, 163, 184, 0.6);
+  margin-top: 1.4rem;
+}
+
+.attack-sim .live {
+  margin-top: 3.4rem;
+  border: 1px solid var(--line);
+  background: rgba(7, 11, 18, 0.85);
+  padding: 1.6rem clamp(1.2rem, 3vw, 2.4rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem 3rem;
+  align-items: baseline;
+}
+.attack-sim .live .big {
+  font-family: var(--mono);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  color: var(--threat);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.attack-sim .live .cap {
+  color: var(--steel);
+  font-size: 0.86rem;
+  max-width: 34ch;
+}
+
+/* ============ KILL CHAIN ============ */
+.attack-sim #chain .stage {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+}
+.attack-sim .stage-card {
+  max-width: 560px;
+  background: rgba(6, 10, 17, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: clamp(1.6rem, 3.5vw, 2.6rem);
+  transition: border-color 1.2s ease;
+}
+.attack-sim .stage-card .step {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  transition: color 1.2s ease;
+}
+.attack-sim .stage-card h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  margin: 0.9rem 0 0.8rem;
+}
+.attack-sim .stage-card p {
+  color: var(--steel);
+  font-size: 0.95rem;
+}
+.attack-sim .term {
+  margin-top: 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.8;
+  background: #03060b;
+  border: 1px solid var(--line);
+  padding: 1rem 1.2rem;
+  color: #9fb4c6;
+  overflow-x: auto;
+  white-space: pre;
+}
+.attack-sim .term .r {
+  color: var(--threat);
+}
+.attack-sim .term .w {
+  color: var(--warn);
+}
+.attack-sim .term .g {
+  color: var(--defend);
+}
+.attack-sim .term .d {
+  color: #5a6e80;
+}
+
+/* ============ THE TURN ============ */
+.attack-sim #turn {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.attack-sim #turn .wrap {
+  max-width: 860px;
+}
+.attack-sim #turn h2 {
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-weight: 900;
+}
+.attack-sim #turn .lede {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============ PILLARS ============ */
+.attack-sim .pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+.attack-sim .pillar {
+  background: rgba(7, 12, 19, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  padding: 1.8rem 1.6rem;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+.attack-sim .pillar:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.attack-sim .pillar .ic {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  color: var(--accent);
+  transition: all 1.2s ease;
+}
+.attack-sim .pillar h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.02rem;
+  margin-bottom: 0.7rem;
+}
+.attack-sim .pillar p {
+  color: var(--steel);
+  font-size: 0.88rem;
+}
+.attack-sim .pillar .tags {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.attack-sim .pillar .tags i {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--line);
+  color: var(--steel);
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+}
+
+/* ============ SOVEREIGN ============ */
+.attack-sim .sov {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-top: 2.5rem;
+}
+.attack-sim .sov ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.attack-sim .sov li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  color: var(--steel);
+  font-size: 0.95rem;
+}
+.attack-sim .sov li::before {
+  content: '▸';
+  color: var(--accent);
+  transition: color 1.2s ease;
+}
+.attack-sim .sov li strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+.attack-sim .chain-proof {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 2;
+  color: #7e94a8;
+  background: #03060b;
+  border: 1px solid var(--line);
+  padding: 1.4rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+.attack-sim .chain-proof .g {
+  color: var(--defend);
+}
+
+/* ============ CTA ============ */
+.attack-sim #cta {
+  text-align: center;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+.attack-sim #cta .wrap {
+  max-width: 760px;
+}
+.attack-sim .path {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 2.6rem 0;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+}
+.attack-sim .path span {
+  border: 1px solid var(--line);
+  padding: 0.8rem 1.3rem;
+  color: var(--steel);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.attack-sim .path span + span {
+  border-left: 0;
+}
+.attack-sim .path b {
+  color: var(--accent);
+  font-weight: 500;
+  transition: color 1.2s ease;
+}
+
+/* ============ DEMO FORM ============ */
+.attack-sim .demo-form {
+  margin-top: 2.6rem;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: rgba(7, 11, 18, 0.88);
+  backdrop-filter: blur(10px);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: 6px;
+}
+.attack-sim .demo-form__grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 1fr 1fr;
+}
+.attack-sim .demo-form__input {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--paper);
+  background: #03060b;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.attack-sim .demo-form__input::placeholder {
+  color: rgba(141, 163, 184, 0.45);
+}
+.attack-sim .demo-form__input:focus {
+  border-color: var(--accent);
+}
+.attack-sim .demo-form__input--wide {
+  grid-column: 1 / -1;
+}
+.attack-sim .demo-form__textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.55;
+}
+.attack-sim .demo-form__submit {
+  width: 100%;
+  margin-top: 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--accent);
+  border: none;
+  border-radius: 3px;
+  padding: 0.95rem 1.6rem;
+  cursor: pointer;
+  transition:
+    background 1.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+.attack-sim .demo-form__submit:hover:not(:disabled) {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+.attack-sim .demo-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.attack-sim .demo-form__status {
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+.attack-sim .demo-form__status--success {
+  color: var(--defend);
+}
+.attack-sim .demo-form__status--error {
+  color: var(--threat);
+}
+@media (max-width: 560px) {
+  .attack-sim .demo-form__grid {
+    grid-template-columns: 1fr;
+  }
+  .attack-sim .demo-form__input--wide {
+    grid-column: auto;
+  }
+}
+
+/* ============ FOOTER ============ */
+.attack-sim footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--line);
+  background: rgba(4, 7, 12, 0.92);
+  padding: 2.4rem clamp(1.2rem, 6vw, 4rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--steel);
+}
+.attack-sim footer a {
+  color: var(--steel);
+  text-decoration: none;
+}
+.attack-sim footer a:hover {
+  color: var(--accent);
+}
+
+/* ============ RESPONSIVE / MOTION ============ */
+@media (max-width: 900px) {
+  .attack-sim .sov {
+    grid-template-columns: 1fr;
+  }
+  .attack-sim .ticker {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .attack-sim .path span {
+    width: 100%;
+    border-left: 1px solid var(--line);
+    border-top: 0;
+  }
+  .attack-sim .path span:first-child {
+    border-top: 1px solid var(--line);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .attack-sim * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .attack-sim .rv {
+    opacity: 1;
+    transform: none;
+  }
+}
+.attack-sim :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

@@ -26,7 +26,8 @@ export default function SiteHeader({ home = false }) {
         </span>
       </div>
       <a className="nav-cta" href={home ? '#cta' : '/#cta'}>
-        REQUEST NIS2 AUDIT
+        <span className="nav-cta__long">REQUEST NIS2 AUDIT</span>
+        <span className="nav-cta__short">NIS2 AUDIT</span>
       </a>
     </header>
   );

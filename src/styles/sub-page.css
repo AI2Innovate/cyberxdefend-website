@@ -1,6 +1,9 @@
 /* ============ SUB-PAGES (privacy, terms, blog index) ============ */
 .attack-sim--sub {
   min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .attack-sim--sub .attack-sim__grid {
@@ -19,6 +22,7 @@
 .attack-sim--sub .sub-page {
   position: relative;
   z-index: 2;
+  flex: 1 0 auto;
   padding: clamp(5rem, 12vh, 9rem) clamp(1.2rem, 6vw, 4rem);
   padding-top: clamp(6.5rem, 14vh, 8.5rem);
 }
@@ -47,6 +51,13 @@
 
 .attack-sim--sub .sub-page__content > .eyebrow {
   margin-bottom: 1.4rem;
+}
+
+.attack-sim--sub .sub-page__content > h1,
+.attack-sim--sub .blog-index > h1 {
+  font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .attack-sim--sub .sub-page__content > h1 {
@@ -157,7 +168,9 @@
 
 .attack-sim--sub .site-footer {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 /* ============ BLOG INDEX ============ */
@@ -211,6 +224,115 @@
   line-height: 1.6;
 }
 
+/* ============ BLOG ARTICLE (static pages) ============ */
+.attack-sim--sub .sub-page__content > .meta {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-top: 1.3rem;
+  margin-bottom: 0;
+}
+
+.attack-sim--sub .article-body {
+  margin-top: 2.4rem;
+  background: rgba(7, 12, 19, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.attack-sim--sub .article-body h2:first-child,
+.attack-sim--sub .article-body h3:first-child {
+  margin-top: 0;
+}
+
+.attack-sim--sub .article-body h3 {
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--paper);
+  margin: 2rem 0 0.75rem;
+}
+
+.attack-sim--sub .article-body blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.1rem;
+  color: var(--steel);
+  font-style: italic;
+}
+
+.attack-sim--sub .article-body .cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.attack-sim--sub .article-body .cta:hover {
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.attack-sim--sub .article-body .related {
+  border-top: 1px solid var(--line);
+  margin-top: 2.8rem;
+  padding-top: 1.6rem;
+}
+
+.attack-sim--sub .article-body .related h3 {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.attack-sim--sub .article-body .related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.attack-sim--sub .article-body .related li {
+  border-top: 1px solid var(--line);
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.attack-sim--sub .article-body .related li:first-child {
+  border-top: 0;
+}
+
+.attack-sim--sub .article-body .related a {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.attack-sim--sub .article-body .related a:hover {
+  color: var(--accent);
+}
+
+.attack-sim--sub .article-body .related .rel-desc {
+  display: block;
+  color: var(--steel);
+  font-size: clamp(0.9rem, 1vw, 0.98rem);
+  margin-top: 0.35rem;
+  font-weight: 400;
+}
+
 /* ============ LEGAL PROSE PANEL ============ */
 .attack-sim--sub .legal-prose {
   margin-top: 2.4rem;
@@ -229,5 +351,59 @@
   .attack-sim--sub .sub-page__content > h1,
   .attack-sim--sub .blog-index > h1 {
     max-width: none;
+  }
+
+  .attack-sim--sub .sub-page {
+    padding: clamp(3.5rem, 10vh, 5rem) clamp(1rem, 4vw, 1.5rem);
+    padding-top: clamp(5rem, 16vw, 6rem);
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .attack-sim--sub .sub-page__content > .lede,
+  .attack-sim--sub .blog-index > .lede {
+    max-width: none;
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+  }
+
+  .attack-sim--sub .blog-index__posts {
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .attack-sim--sub .blog-index__post {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .attack-sim--sub .blog-index__post h2 {
+    font-size: clamp(1rem, 4.5vw, 1.2rem);
+  }
+
+  .attack-sim--sub .legal-prose,
+  .attack-sim--sub .article-body {
+    padding: 1.2rem 1rem;
+    margin-top: 1.8rem;
+  }
+
+  .attack-sim--sub .sub-page__content h2,
+  .attack-sim--sub .legal-prose h2,
+  .attack-sim--sub .article-body h2 {
+    font-size: clamp(1.1rem, 5vw, 1.45rem);
+    margin-top: 2rem;
+  }
+
+  .attack-sim--sub .page-back {
+    margin-bottom: 1.5rem;
+  }
+
+  .attack-sim--sub .site-footer__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1rem;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    gap: 1rem;
+  }
+
+  .attack-sim--sub .site-footer__nav {
+    gap: 0.75rem 1.2rem;
   }
 }

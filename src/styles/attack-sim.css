@@ -39,8 +39,11 @@
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .attack-sim ::selection {
@@ -52,10 +55,13 @@
 .attack-sim__canvas {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   height: 100vh;
+  height: 100dvh;
   z-index: 0;
   display: block;
+  pointer-events: none;
 }
 .attack-sim__vignette {
   position: fixed;
@@ -90,6 +96,7 @@
   background: linear-gradient(to bottom, rgba(5, 8, 14, 0.92), rgba(5, 8, 14, 0.55) 75%, transparent);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
+  min-width: 0;
 }
 .attack-sim .brand {
   display: flex;
@@ -98,6 +105,7 @@
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: 0;
 }
 .attack-sim .brand-mark {
   width: 36px;
@@ -181,6 +189,10 @@
     background 1.2s ease,
     transform 0.15s ease;
   white-space: nowrap;
+  flex-shrink: 0;
+}
+.attack-sim .nav-cta__short {
+  display: none;
 }
 .attack-sim .nav-cta:hover {
   transform: translateY(-1px);
@@ -190,6 +202,7 @@
 .attack-sim main {
   position: relative;
   z-index: 2;
+  flex: 1 0 auto;
 }
 .attack-sim section {
   position: relative;
@@ -719,21 +732,15 @@
   color: #ff6b7a;
   text-shadow: 0 0 10px rgba(255, 59, 78, 0.25);
 }
-@media (max-width: 560px) {
-  .attack-sim .demo-form__grid {
-    grid-template-columns: 1fr;
-  }
-  .attack-sim .demo-form__input--wide {
-    grid-column: auto;
-  }
-}
 
 /* ============ FOOTER ============ */
 .attack-sim .site-footer {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  flex-shrink: 0;
+  margin-top: auto;
   border-top: 1px solid var(--line);
-  background: rgba(4, 7, 12, 0.92);
+  background: var(--ink);
   font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--steel);
@@ -783,6 +790,218 @@
     display: none;
   }
 }
+
+@media (max-width: 640px) {
+  .attack-sim section {
+    padding: clamp(3.5rem, 10vh, 5rem) clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .attack-sim #hero {
+    min-height: auto;
+    padding-top: clamp(5.5rem, 18vw, 6.5rem);
+    padding-bottom: 4rem;
+  }
+
+  .attack-sim #hero .tagline {
+    margin-top: 1.8rem;
+    gap: 0.5rem 1rem;
+    font-size: 0.72rem;
+  }
+
+  .attack-sim h1 {
+    font-size: clamp(1.75rem, 8.5vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .attack-sim h2 {
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    line-height: 1.18;
+  }
+
+  .attack-sim .eyebrow {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    letter-spacing: 0.14em;
+    font-size: 0.68rem;
+    margin-bottom: 1rem;
+  }
+
+  .attack-sim .lede {
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    max-width: none;
+  }
+
+  .attack-sim .hero-ctas {
+    margin-top: 2rem;
+    gap: 0.75rem;
+  }
+
+  .attack-sim .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 1.2rem;
+  }
+
+  .attack-sim .scroll-hint {
+    display: none;
+  }
+
+  .attack-sim .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attack-sim .stat {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .attack-sim .live {
+    padding: 1.2rem 1rem;
+    gap: 1.2rem;
+  }
+
+  .attack-sim .live .big {
+    font-size: clamp(1.35rem, 7vw, 1.8rem);
+    word-break: break-word;
+  }
+
+  .attack-sim .live .cap {
+    max-width: none;
+    font-size: 0.82rem;
+  }
+
+  .attack-sim #chain .stage {
+    min-height: auto;
+    padding: 2.5rem 0;
+  }
+
+  .attack-sim .stage-card {
+    max-width: none;
+    padding: 1.4rem 1.2rem;
+  }
+
+  .attack-sim .stage-card .step {
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+  }
+
+  .attack-sim .term {
+    font-size: 0.66rem;
+    padding: 0.85rem;
+    max-width: 100%;
+  }
+
+  .attack-sim #turn {
+    min-height: auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .attack-sim #turn h2 {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+
+  .attack-sim .pillars {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .attack-sim .pillar {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .attack-sim .sov {
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .attack-sim .sov li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.95rem 0;
+  }
+
+  .attack-sim .chain-proof {
+    font-size: 0.62rem;
+    padding: 1rem;
+  }
+
+  .attack-sim #cta {
+    min-height: auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .attack-sim .path {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 2rem 0;
+  }
+
+  .attack-sim .path span {
+    width: 100%;
+    border-left: 1px solid var(--line);
+    border-top: 0;
+    justify-content: flex-start;
+  }
+
+  .attack-sim .path span:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .attack-sim .path span + span {
+    border-left: 1px solid var(--line);
+  }
+
+  .attack-sim .demo-form {
+    padding: 1.1rem;
+  }
+
+  .attack-sim .demo-form__submit {
+    width: 100%;
+  }
+
+  .attack-sim .site-header {
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .attack-sim .brand {
+    flex: 1 0 auto;
+    min-width: 0;
+  }
+
+  .attack-sim .nav-cta {
+    font-size: 0.62rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .attack-sim .nav-cta__long {
+    display: none;
+  }
+
+  .attack-sim .nav-cta__short {
+    display: inline;
+  }
+
+  .attack-sim .site-footer__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1rem;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    gap: 1rem;
+  }
+
+  .attack-sim .site-footer__nav {
+    gap: 0.75rem 1.2rem;
+  }
+
+  .attack-sim #cta {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @media (max-width: 560px) {
   .attack-sim .path span {
     width: 100%;
@@ -792,7 +1011,14 @@
   .attack-sim .path span:first-child {
     border-top: 1px solid var(--line);
   }
+  .attack-sim .demo-form__grid {
+    grid-template-columns: 1fr;
+  }
+  .attack-sim .demo-form__input--wide {
+    grid-column: auto;
+  }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .attack-sim * {
     animation: none !important;

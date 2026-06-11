@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Glossary — NIS2, GDPR, Ransomware &amp; Forensics Terms · CyberXDefend</title>
     <meta
       name="description"
@@ -36,6 +36,10 @@
       dl.glossary dt .abbr { color: var(--accent); font-weight: 700; }
       dl.glossary dd { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
       dl.glossary dd em { color: var(--text); font-style: normal; }
+      @media (max-width: 640px) {
+        dl.glossary dt { font-size: 16px; margin-top: 1.25rem; padding-top: 1rem; }
+        dl.glossary dd { font-size: 15px; }
+      }
     </style>
     <script type="application/ld+json">
       {

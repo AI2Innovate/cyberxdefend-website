@@ -10,6 +10,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<AttackSimPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
+        <Route path="/blog/" element={<BlogIndexPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/privacy-policy.html" element={<PrivacyPolicyPage />} />
         <Route path="/terms-and-conditions" element={<TermsPage />} />

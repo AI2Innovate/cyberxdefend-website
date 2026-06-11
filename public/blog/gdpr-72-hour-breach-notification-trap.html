@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>The 72-Hour Trap: Why Most Companies Fail GDPR Breach Response — CyberXDefend</title>
     <meta
       name="description"
@@ -22,7 +22,7 @@
     <meta property="og:description" content="Speed beats perfection. Regulators reward structured response over delayed accuracy." />
     <meta property="og:image" content="https://cyberxdefend.com/og-image.png" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="stylesheet" href="/blog/_styles.css" />
+    <link rel="stylesheet" href="/blog-sub-page.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -81,24 +81,27 @@
       }
     </script>
   </head>
-  <body class="cx-chrome">
-    <header class="cx-header">
+  <body class="attack-sim attack-sim--sub">
+    <div class="attack-sim__vignette" aria-hidden="true"></div>
+    <div class="attack-sim__scanlines" aria-hidden="true"></div>
+    <div class="attack-sim__grid" aria-hidden="true"></div>
+
+<header class="cx-header">
       <a class="cx-brand" href="/"><span class="cx-brand-mark">XF</span><span class="cx-brand-name">CYBER<b>X</b>DEFEND</span></a>
       <div class="cx-ticker" aria-live="off">
         <span><i class="cx-dot"></i> PHISHING EMAILS SINCE YOU OPENED THIS PAGE: <b id="tick-phish">0</b></span>
         <span>EST. RANSOMWARE ATTACKS: <b id="tick-ransom">0</b></span>
       </div>
-      <a class="cx-cta" href="/#cta">REQUEST NIS2 AUDIT</a>
+      <a class="cx-cta" href="/#cta"><span class="cx-cta__long">REQUEST NIS2 AUDIT</span><span class="cx-cta__short">NIS2 AUDIT</span></a>
     </header>
-
-    <p class="cx-back"><a href="/blog">← Back to Insights</a></p>
-
-    <main class="article">
-      <p class="eyebrow">GDPR · Incident Response</p>
+<main class="sub-page">
+      <div class="wrap">
+        <p class="page-back"><a href="/blog">← Back to Insights</a></p>
+        <div class="sub-page__content blog-article">
+          <p class="eyebrow">GDPR · Incident Response</p>
       <h1>The 72-Hour Trap: Why Most Companies Fail GDPR Breach Response</h1>
       <p class="meta">Updated April 2026 · ~6 min read · For security leaders, DPOs, and incident commanders</p>
-
-      <p>
+          <div class="article-body"><p>
         The biggest mistake companies make after a cyberattack? They think 72 hours is enough time. It is not —
         at least not without preparation.
       </p>
@@ -183,16 +186,20 @@
           <li><a href="/blog/basic-fit-cyber-incident-lessons.html">Lessons from the Basic-Fit Cyber Incident<span class="rel-desc">Consumer-business breach dynamics and controlled communication.</span></a></li>
         </ul>
       </div>
+      </div>
+    
+        </div>
+      </div>
     </main>
 
-    <footer class="site">
-      <div class="bar">
-        <span style="color: var(--muted); font-size: 13px;">© 2026 <a href="https://ai2innovate.io" target="_blank" rel="noopener noreferrer">AI2Innovate</a>. All rights reserved.</span>
-        <nav>
+        <footer class="site-footer">
+      <div class="site-footer__bar">
+        <p class="site-footer__copy">© 2026 <a href="https://ai2innovate.io" target="_blank" rel="noopener noreferrer">AI2Innovate</a>. All rights reserved.</p>
+        <nav class="site-footer__nav" aria-label="Footer">
           <a href="/privacy-policy.html">Privacy Policy</a>
           <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
           <a href="/blog/">Insights</a>
-          <a href="/#contact">Contact</a>
+          <a href="/#cta">Contact</a>
         </nav>
       </div>
     </footer>

@@ -27,6 +27,7 @@ body.cx-chrome {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  min-width: 0;
 }
 
 .cx-brand {
@@ -120,7 +121,12 @@ body.cx-chrome {
   border-radius: 3px;
   font-weight: 500;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: transform 0.15s ease;
+}
+
+.cx-cta__short {
+  display: none;
 }
 
 .cx-cta:hover {
@@ -147,5 +153,31 @@ body.cx-chrome {
 @media (max-width: 900px) {
   .cx-ticker {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .cx-header {
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .cx-brand {
+    flex: 1 0 auto;
+    min-width: 0;
+  }
+
+  .cx-cta {
+    font-size: 0.62rem;
+    padding: 0.5rem 0.7rem;
+    letter-spacing: 0.04em;
+  }
+
+  .cx-cta__long {
+    display: none;
+  }
+
+  .cx-cta__short {
+    display: inline;
   }
 }

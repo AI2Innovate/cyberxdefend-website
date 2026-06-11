@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>404 — Page not found · CyberXDefend</title>
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="https://cyberxdefend.com/404.html" />
@@ -21,6 +21,12 @@
         padding: 10px 18px; border-radius: 999px; color: var(--text); font-size: 14px;
       }
       .err-links a:hover { border-color: var(--accent); text-decoration: none; }
+      @media (max-width: 640px) {
+        .err-wrap { padding: 5.5rem 1rem 2rem; }
+        .err-code { font-size: clamp(3.5rem, 22vw, 5rem); }
+        .err-links { gap: 0.65rem; }
+        .err-links a { font-size: 13px; padding: 0.65rem 1rem; }
+      }
     </style>
   </head>
   <body>

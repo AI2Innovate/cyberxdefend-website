@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook — CyberXDefend</title>
     <meta
       name="description"
@@ -22,7 +22,7 @@
     <meta property="og:description" content="Triage double-extortion ransomware while preserving defensible evidence for legal counsel and the CCB." />
     <meta property="og:image" content="https://cyberxdefend.com/og-image.png" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="stylesheet" href="/blog/_styles.css" />
+    <link rel="stylesheet" href="/blog-sub-page.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -99,24 +99,27 @@
       }
     </script>
   </head>
-  <body class="cx-chrome">
-    <header class="cx-header">
+  <body class="attack-sim attack-sim--sub">
+    <div class="attack-sim__vignette" aria-hidden="true"></div>
+    <div class="attack-sim__scanlines" aria-hidden="true"></div>
+    <div class="attack-sim__grid" aria-hidden="true"></div>
+
+<header class="cx-header">
       <a class="cx-brand" href="/"><span class="cx-brand-mark">XF</span><span class="cx-brand-name">CYBER<b>X</b>DEFEND</span></a>
       <div class="cx-ticker" aria-live="off">
         <span><i class="cx-dot"></i> PHISHING EMAILS SINCE YOU OPENED THIS PAGE: <b id="tick-phish">0</b></span>
         <span>EST. RANSOMWARE ATTACKS: <b id="tick-ransom">0</b></span>
       </div>
-      <a class="cx-cta" href="/#cta">REQUEST NIS2 AUDIT</a>
+      <a class="cx-cta" href="/#cta"><span class="cx-cta__long">REQUEST NIS2 AUDIT</span><span class="cx-cta__short">NIS2 AUDIT</span></a>
     </header>
-
-    <p class="cx-back"><a href="/blog">← Back to Insights</a></p>
-
-    <main class="article">
-      <p class="eyebrow">Ransomware · Incident Response</p>
+<main class="sub-page">
+      <div class="wrap">
+        <p class="page-back"><a href="/blog">← Back to Insights</a></p>
+        <div class="sub-page__content blog-article">
+          <p class="eyebrow">Ransomware · Incident Response</p>
       <h1>Ransomware Incident Response in Belgium: A 7-Step Forensic Playbook</h1>
       <p class="meta">Updated April 2026 · ~7 min read · For incident response leads, internal counsel, and CISOs in Belgian mid-market organizations</p>
-
-      <p>
+          <div class="article-body"><p>
         Belgium handled <strong>105 ransomware incidents</strong> nationally in 2025, and the AZ Monica disruption in January 2026 made clear that healthcare and adjacent sectors remain primary targets. The hardest part of a real ransomware event isn't the encryption — it's making decisions under pressure that hold up later in front of regulators, insurers, and clients.
       </p>
 
@@ -177,16 +180,20 @@
           <li><a href="/blog/gdpr-72-hour-breach-notification-trap.html">The 72-Hour Trap: Why Most Companies Fail GDPR Breach Response<span class="rel-desc">How to run the GDPR notification clock in parallel with the CCB clock.</span></a></li>
         </ul>
       </div>
+      </div>
+    
+        </div>
+      </div>
     </main>
 
-    <footer class="site">
-      <div class="bar">
-        <span style="color: var(--muted); font-size: 13px;">© 2026 <a href="https://ai2innovate.io" target="_blank" rel="noopener noreferrer">AI2Innovate</a>. All rights reserved.</span>
-        <nav>
+        <footer class="site-footer">
+      <div class="site-footer__bar">
+        <p class="site-footer__copy">© 2026 <a href="https://ai2innovate.io" target="_blank" rel="noopener noreferrer">AI2Innovate</a>. All rights reserved.</p>
+        <nav class="site-footer__nav" aria-label="Footer">
           <a href="/privacy-policy.html">Privacy Policy</a>
           <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
           <a href="/blog/">Insights</a>
-          <a href="/#contact">Contact</a>
+          <a href="/#cta">Contact</a>
         </nav>
       </div>
     </footer>

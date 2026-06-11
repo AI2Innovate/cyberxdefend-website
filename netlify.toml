@@ -17,6 +17,12 @@
   status = 200
   force = true
 
+# SPA fallback for React routes (static files in dist/ are served first).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 # Long-lived cache for Vite-hashed assets (filenames include a content hash).
 [[headers]]
   for = "/assets/*"

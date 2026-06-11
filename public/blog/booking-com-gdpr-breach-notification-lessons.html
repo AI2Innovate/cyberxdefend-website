@@ -23,6 +23,11 @@
     <meta property="og:image" content="https://cyberxdefend.com/og-image.png" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="stylesheet" href="/blog/_styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/site-chrome.css" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -76,21 +81,17 @@
       }
     </script>
   </head>
-  <body>
-    <header class="site">
-      <div class="bar">
-        <a href="/" class="brand">
-          <span class="mark">XF</span>
-          <strong>CyberXDefend</strong>
-        </a>
-        <nav>
-          <a href="/#services">Capabilities</a>
-          <a href="/#industries">Industries</a>
-          <a href="/blog/">Insights</a>
-          <a href="/#contact">Contact</a>
-        </nav>
+  <body class="cx-chrome">
+    <header class="cx-header">
+      <a class="cx-brand" href="/"><span class="cx-brand-mark">XF</span><span class="cx-brand-name">CYBER<b>X</b>DEFEND</span></a>
+      <div class="cx-ticker" aria-live="off">
+        <span><i class="cx-dot"></i> PHISHING EMAILS SINCE YOU OPENED THIS PAGE: <b id="tick-phish">0</b></span>
+        <span>EST. RANSOMWARE ATTACKS: <b id="tick-ransom">0</b></span>
       </div>
+      <a class="cx-cta" href="/#cta">REQUEST NIS2 AUDIT</a>
     </header>
+
+    <p class="cx-back"><a href="/blog">← Back to Insights</a></p>
 
     <main class="article">
       <p class="eyebrow">GDPR · Breach Response</p>
@@ -177,6 +178,7 @@
         </nav>
       </div>
     </footer>
+    <script src="/site-ticker.js" defer></script>
     <script src="/analytics.js" defer></script>
   </body>
 </html>

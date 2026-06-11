@@ -77,7 +77,7 @@
 }
 
 /* ============ HUD / NAV ============ */
-.attack-sim header {
+.attack-sim .site-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -92,15 +92,40 @@
   border-bottom: 1px solid var(--line);
 }
 .attack-sim .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.attack-sim .brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  transition:
+    border-color 1.2s ease,
+    background 1.2s ease,
+    color 1.2s ease;
+}
+.attack-sim .brand-name {
   font-family: var(--display);
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.04em;
   color: var(--paper);
-  text-decoration: none;
-  white-space: nowrap;
 }
-.attack-sim .brand b {
+.attack-sim .brand-name b {
   color: var(--accent);
   transition: color 1.2s ease;
 }
@@ -608,9 +633,8 @@
 .attack-sim .demo-form {
   margin-top: 2.6rem;
   text-align: left;
-  border: 1px solid var(--line);
-  background: rgba(7, 11, 18, 0.88);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(141, 163, 184, 0.22);
+  background: transparent;
   padding: clamp(1.4rem, 3vw, 2rem);
   border-radius: 6px;
 }
@@ -624,18 +648,28 @@
   font-family: var(--sans);
   font-size: 0.9rem;
   color: var(--paper);
-  background: #03060b;
-  border: 1px solid var(--line);
+  background: rgba(5, 8, 14, 0.35);
+  border: 1px solid rgba(141, 163, 184, 0.28);
   border-radius: 4px;
   padding: 0.85rem 1rem;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 .attack-sim .demo-form__input::placeholder {
-  color: rgba(141, 163, 184, 0.45);
+  color: rgba(233, 240, 246, 0.55);
 }
 .attack-sim .demo-form__input:focus {
   border-color: var(--accent);
+  background: rgba(5, 8, 14, 0.5);
+}
+.attack-sim .demo-form__input:-webkit-autofill,
+.attack-sim .demo-form__input:-webkit-autofill:hover,
+.attack-sim .demo-form__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--paper);
+  -webkit-box-shadow: 0 0 0 1000px rgba(5, 8, 14, 0.55) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 .attack-sim .demo-form__input--wide {
   grid-column: 1 / -1;
@@ -675,12 +709,15 @@
   margin-top: 1rem;
   font-family: var(--mono);
   font-size: 0.78rem;
+  color: var(--paper);
 }
 .attack-sim .demo-form__status--success {
   color: var(--defend);
+  text-shadow: 0 0 12px rgba(43, 232, 200, 0.35);
 }
 .attack-sim .demo-form__status--error {
-  color: var(--threat);
+  color: #ff6b7a;
+  text-shadow: 0 0 10px rgba(255, 59, 78, 0.25);
 }
 @media (max-width: 560px) {
   .attack-sim .demo-form__grid {
@@ -692,25 +729,48 @@
 }
 
 /* ============ FOOTER ============ */
-.attack-sim footer {
+.attack-sim .site-footer {
   position: relative;
   z-index: 2;
   border-top: 1px solid var(--line);
   background: rgba(4, 7, 12, 0.92);
-  padding: 2.4rem clamp(1.2rem, 6vw, 4rem);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 3rem;
-  justify-content: space-between;
   font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--steel);
 }
-.attack-sim footer a {
+.attack-sim .site-footer__bar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem clamp(1.2rem, 6vw, 4rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.attack-sim .site-footer__copy {
+  margin: 0;
+  color: var(--steel);
+}
+.attack-sim .site-footer__copy a {
+  color: var(--paper);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.attack-sim .site-footer__copy a:hover {
+  color: var(--accent);
+}
+.attack-sim .site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+}
+.attack-sim .site-footer__nav a {
   color: var(--steel);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
-.attack-sim footer a:hover {
+.attack-sim .site-footer__nav a:hover {
   color: var(--accent);
 }
 

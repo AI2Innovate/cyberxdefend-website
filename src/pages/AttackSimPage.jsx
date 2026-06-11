@@ -1,5 +1,7 @@
 import DemoForm from '../components/DemoForm';
 import Reveal from '../components/Reveal';
+import SiteFooter from '../components/SiteFooter';
+import SiteHeader from '../components/SiteHeader';
 import StatCounter from '../components/StatCounter';
 import { useAttackCanvas } from '../hooks/useAttackCanvas';
 import { useLiveTickers } from '../hooks/useLiveTickers';
@@ -145,7 +147,7 @@ const KILL_CHAIN_STAGES = [
 export default function AttackSimPage() {
   const mode = useScrollMode();
   const canvasRef = useAttackCanvas(mode);
-  const { phish, ransom, livePhish, clock } = useLiveTickers();
+  const { livePhish, clock } = useLiveTickers();
 
   return (
     <div className="attack-sim">
@@ -153,23 +155,7 @@ export default function AttackSimPage() {
       <div className="attack-sim__vignette" aria-hidden="true" />
       <div className="attack-sim__scanlines" aria-hidden="true" />
 
-      <header>
-        <a className="brand" href="#hero">
-          CYBER<b>X</b>DEFEND
-        </a>
-        <div className="ticker" aria-live="off">
-          <span>
-            <i className="dot" />
-            PHISHING EMAILS SINCE YOU OPENED THIS PAGE: <b>{phish}</b>
-          </span>
-          <span>
-            EST. RANSOMWARE ATTACKS: <b>{ransom}</b>
-          </span>
-        </div>
-        <a className="nav-cta" href="#cta">
-          REQUEST NIS2 AUDIT
-        </a>
-      </header>
+      <SiteHeader home />
 
       <main>
         <section id="hero" data-mode="chaos">
@@ -422,13 +408,7 @@ export default function AttackSimPage() {
         </section>
       </main>
 
-      <footer>
-        <span>© 2026 CyberXDefend · AI2Innovate SRL · Belgium 🇧🇪 · EU-sovereign by design</span>
-        <span>
-          <a href="https://vaultship.cyberxdefend.com">VaultShip OSS</a> · <a href="https://github.com/cyberxdefend">GitHub</a> ·{' '}
-          <a href="mailto:contact@cyberxdefend.com">contact@cyberxdefend.com</a>
-        </span>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
